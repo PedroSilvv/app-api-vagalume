@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>SongList</title>
+</head>
+
+<body>
+
+    {%if messages%}
+        <div class="messages-box">
+            {%for message in messages%}
+                <h4>{{message}}</h4>
+            {%endfor%}
+        </div>
+    {% endif %}
+
+    {% for song in songs%}
+        <div class="song-box">
+            <a href="{% url 'songdetail' song.id %}" ><h4>{{song.title}}</h4></a>
+            <a>{{song.artist}}</h4></a>
+        </div>
+        <br>
+    {%endfor%}
+
+</body>
+
+
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+
+    <title>Post an Song</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine-ie11.js" integrity="sha512-6m6AtgVSg7JzStQBuIpqoVuGPVSAK5Sp/ti6ySu6AjRDa1pX8mIl1TwP9QmKXU+4Mhq/73SzOk6mbNvyj9MPzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ 
+
+</head>
+
+<style>
+    .post-song-div{
+        margin-top : 100px;
+    }
+</style>
+
+
+<body>
+
+    {% include "parciais/header.html" %}
+
+    <div class="container mx-auto my-8 post-song-div"  style="margin-top: 100px;">
+
+        {%if messages%}
+            <div class="messages-box">
+                {%for message in messages%}
+                    <h4>{{message}}</h4>
+                {%endfor%}
+            </div>
+        {% endif %}
+
+        <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+            <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Song Information</h2>
+        
+            <form action="{{ action }}" method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div class="mb-4">
+                        <label for="title" class="text-gray-700 dark:text-gray-200">Title</label>
+                        <input type="text" name="title" id="title" placeholder="Title"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    </div>
+        
+                    <div class="mb-4">
+                        <label for="artist" class="text-gray-700 dark:text-gray-200">Artist</label>
+                        <input type="text" name="artist" list="artists"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                        <datalist id="artists">
+                            {% for x in artists %}
+                            <option value="{{ x.name }}"></option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+        
+                    <div class="mb-4">
+                        <label for="key" class="text-gray-700 dark:text-gray-200">Key</label>
+                        <select name="key" id="key"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                            <option value="">-</option>
+                            <option value="A">A</option>
+                            <option value="Am">Am</option>
+                            <option value="Bb">Bb</option>
+                            <option value="Bbm">Bbm</option>
+                            <option value="B">B</option>
+                            <option value="Bm">Bm</option>
+                            <option value="C">C</option>
+                            <option value="Cm">Cm</option>
+                            <option value="C#m">C#m</option>
+                            <option value="Db">Db</option>
+                            <option value="D">D</option>
+                            <option value="Dm">Dm</option>
+                            <option value="D#m">Ebm</option>
+                            <option value="Eb">Eb</option>
+                            <option value="E">E</option>
+                            <option value="Em">Em</option>
+                            <option value="F">F</option>
+                            <option value="Fm">Fm</option>
+                            <option value="F#">F#</option>
+                            <option value="F#m">F#m</option>
+                            <option value="G">G</option>
+                            <option value="Gm">Gm</option>
+                            <option value="G#m">G#m</option>
+                            <option value="Ab">Ab</option>
+                        </select>
+                    </div>
+        
+                    <div class="mb-4">
+                        <label for="tuning" class="text-gray-700 dark:text-gray-200">Tuning</label>
+                        <input type="text" name="tuning" value="E A D G B E" onfocus="if(this.value == 'E A D G B E') this.value = ''"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    </div>
+                </div>
+        
+                <div class="flex justify-end mt-6">
+                    <button type="submit"
+                        class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">GO</button>
+                </div>
+            </form>
+        </section>
+
+    </div>
+    
+</body>
+</html>

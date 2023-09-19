@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine-ie11.js" integrity="sha512-6m6AtgVSg7JzStQBuIpqoVuGPVSAK5Sp/ti6ySu6AjRDa1pX8mIl1TwP9QmKXU+4Mhq/73SzOk6mbNvyj9MPzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Postchord</title>
+</head>
+<body>
+
+    {% include "parciais/header.html" %}
+
+    
+    
+    <div class="container mx-auto my-8 post-song-div"  >
+
+
+        <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+
+            <div style="margin-bottom: 33px;">
+
+                <h1 class="text-2xl font-semibold  text-gray-800 lg:text-3xl dark:text-white"> {{song.title}} </h1>
+                
+                <h3 style="font-size:18px;" class="text-2xl font-semibold text-gray-800 lg:text-1xl dark:text-white"> {{song.artist}} </h3>
+        
+            </div>
+
+            <form action="{% url 'song-posted' %}" method="post">
+
+                {% csrf_token %}
+
+                
+                <div>
+                    <label  class="block text-sm text-gray-500 dark:text-gray-300">Chords / Tab</label>
+
+                    <textarea style="min-height: 430px;" cols="30" rows="10" class="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-4 h-72 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" name="chords" id="chords">{{lyric}}</textarea>
+                </div>
+
+                <div style="margin-top: 28px;"> 
+                    <label  class="block text-sm text-gray-500 dark:text-gray-300">Description</label>
+                
+                    <textarea  cols="30" rows="10" class="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-4 h-32 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" name="description" id="description"></textarea>
+                </div>
+
+                <div class="flex justify-end mt-6">
+                        <button type="submit"
+                            class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">POST</button>
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+
+
+
+
+</body>
+</html>

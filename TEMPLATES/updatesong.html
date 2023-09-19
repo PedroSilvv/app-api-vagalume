@@ -1,0 +1,60 @@
+'<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar cifra</title>
+</head>
+<body>
+
+    <div class="song-detail-box">
+        <h1>{{song.title}}</h1>
+        <h2>{{song.artist}}</h2>
+
+        <form method="post">
+
+			{% csrf_token %}
+            <textarea style="white-space:pre-wrap;" name="chords" id="chords" cols="30" rows="10">{{song.chords}}</textarea>
+            <br>
+			<textarea style="white-space:pre-wrap;" name="description" id="description" cols="30" rows="10">{{song.description}}</textarea>
+			<br>
+            <select name="key" id="key">
+                <option value="" >-</option>
+					<option value="A" >A</option>
+					<option value="Am" >Am</option>
+					<option value="Bb" >Bb</option>
+					<option value="Bbm" >Bbm</option>
+					<option value="B" >B</option>
+					<option value="Bm" >Bm</option>
+					<option value="C" >C</option>
+					<option value="Cm" >Cm</option>
+					<option value="C#m" >C#m</option>
+					<option value="Db" >Db</option>
+					<option value="D" >D</option>
+					<option value="Dm" >Dm</option>
+					<option value="D#m" >Ebm</option>
+					<option value="Eb" >Eb</option>
+					<option value="E"  >E</option>
+					<option value="Em" >Em</option>
+					<option value="F" >F</option>
+					<option value="Fm" >Fm</option>
+					<option value="F#" >F#</option>
+					<option value="F#m" >F#m</option>
+					<option value="G" >G</option>
+					<option value="Gm" >Gm</option>
+					<option value="G#m" >G#m</option>
+					<option value="Ab" >Ab</option>
+            </select>
+
+            <input type="text" name="tuning" value="E A D G B E" onfocus="if(this.value == 'E A D G B E') this.value = ''">
+
+			<div class="button-box">
+				<button type="submit">editar cifra</button>
+			</div>
+
+        </form>
+
+        <h4>{{song.author}}</h4>
+    </div>
+
+</body>
+</html>

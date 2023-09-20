@@ -173,7 +173,7 @@ def postsong(request):
 def postchord(request):
 
     if request.session['liberar_postchord'] != True:
-        return redirect('homepage')
+        raise PermissionDenied("Need choose a song to access this endpoint (Access /post/postsong first) ")
 
  
     try:

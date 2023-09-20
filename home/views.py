@@ -2,6 +2,7 @@ from django.shortcuts import render
 from postsong.models import Song, Artist
 from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
+from unidecode import unidecode
 
 def home(request):
     return render(request, 'home.html', context={

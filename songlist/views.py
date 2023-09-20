@@ -65,5 +65,14 @@ def update_song(request, song_id):
         return redirect('songdetail', song_id=song.id)
 
 
+def user_songs(request):
+
+    user = request.user
+    songs = Song.objects.all().filter(author = request.user)
+
+    return render(request, "songlist.html", context={
+        'songs' : songs
+    })
+
 
 

@@ -116,7 +116,7 @@ def finally_post_chord(request, song_id):
 
 
 
-@login_required(login_url='/')
+@login_required(login_url='/login/')
 def postsong(request):
 
     if request.method == "GET":
@@ -169,8 +169,11 @@ def postsong(request):
 
 
 
-@login_required(login_url='/')
+@login_required(login_url='/login/')
 def postchord(request):
+
+    if 'liberar_postchord' not in request.session:
+        request.session['liberar_postchord'] = False
 
     if request.session['liberar_postchord'] != True:
         raise PermissionDenied("Need choose a song to access this endpoint (Access /post/postsong first) ")
@@ -198,7 +201,7 @@ def postchord(request):
         'lyric': lyric,
     })
 
-@login_required(login_url='/')
+@login_required(login_url='/login/')
 def finally_post_chord(request):
 
     user_id = request.session.get('user_id')

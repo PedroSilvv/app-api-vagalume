@@ -11,6 +11,15 @@
 
 </head>
 
+<style>
+
+    .cifra{
+        color : orange;
+        font-weight : 600;
+    }
+
+</style>
+
 <body>
 
     {% include "parciais/header.html" %}
@@ -23,6 +32,7 @@
         <h4>{{song.key}}</h4>
         <h4>{{song.description}}</h4>
         <h4>{{song.author}}</h4>
+        
 
     </div>
 
@@ -33,6 +43,20 @@
     <div class="button-box">
         <a href="{% url 'delete_song' song.id%}">arquivar cifra</a>
     </div>
+
+    <script>
+    const letra = document.getElementById('song_chord');
+    const conteudo = letra.innerHTML;
+
+    const padraoCifra = /\[([^\]]*)\]/g;
+
+    const cifraCorrigida = conteudo.replace(padraoCifra, (match, cifra) => {
+        return '<span class="cifra">' + cifra + '</span>';
+    });
+
+    letra.innerHTML = cifraCorrigida;
+
+    </script>
 
 </body>
 

@@ -7,5 +7,5 @@ urlpatterns = [
     #path("postchord/<int:song_id>/", views.postchord, name='postchord'),
     path("postchord/", views.postchord, name='postchord'),
     #path("chord-posted/<int:song_id>/", views.finally_post_chord, name='song-posted')
-    path("chord-posted/", views.finally_post_chord, name='song-posted')
-]
+    path("chord-posted/", views.finally_post_chord, name='song-posted') 
+    ]

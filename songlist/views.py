@@ -2,18 +2,32 @@ from django.shortcuts import render, redirect
 from postsong.models import Song
 from django.contrib import messages
 from django.http import HttpResponseNotFound
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+
 
 def songlist(request):
     return render(request, "songlist.html", context={
         "songs" : Song.objects.all()
     })
 
+""""""
 def songdetail(request, song_id):
 
     try:
         song = Song.objects.get(id=song_id)
+
+        pdf_filename = f"{song.title}.pdf"
+
+        c = canvas.Canvas(pdf_filename, pagesize=letter)
+
+        text_test = f"{song.chords}"
+        c.drawString(100, 750, text_test)
+
+        c.save()
         return render(request, "songdetail.html", context={
-            "song" : song
+            "song" : song,
+            "pdf" : pdf_filename,
         })
     except:
         messages.error(request, "Cifra não encontrada")
@@ -73,6 +87,5 @@ def user_songs(request):
     return render(request, "songlist.html", context={
         'songs' : songs
     })
-
 
 
